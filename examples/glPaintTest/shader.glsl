@@ -129,7 +129,7 @@ void emit(int index, vec4 position, vec3 normal, vec4 patchCoord)
     outpt.v.patchCoord = patchCoord;
     outpt.v.normal = normal;
 
-    gl_Position = ProjectionMatrix * outpt.v.position;
+    gl_Position = gl_in[index].gl_Position;
     EmitVertex();
 }
 

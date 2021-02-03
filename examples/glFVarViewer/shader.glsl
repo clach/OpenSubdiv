@@ -128,6 +128,8 @@ void main()
     // --
 
     OSD_USER_VARYING_PER_VERTEX();
+    
+    gl_Position = OsdProjectionMatrix() * outpt.v.position;
 }
 
 #endif
@@ -232,9 +234,10 @@ void emit(int index, vec3 normal)
 
 #ifdef GEOMETRY_UV_VIEW
     uv = 2 * uv - vec2(1);
+    // XXX UGH this is gonna break isn't it
     gl_Position = UvViewMatrix * vec4(uv.s, uv.y, 0, 1);
 #else
-    gl_Position = ProjectionMatrix * inpt[index].v.position;
+    gl_Position = gl_in[index].gl_Position;
 #endif
     EmitVertex();
 }

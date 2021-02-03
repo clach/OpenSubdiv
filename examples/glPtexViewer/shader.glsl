@@ -154,6 +154,8 @@ void main()
     outpt.v.tessCoord = vec2(0);
     outpt.v.tangent = vec3(0);
     outpt.v.bitangent = vec3(0);
+
+    gl_Position = OsdProjectionMatrix() * outpt.v.position;
 }
 
 #endif
@@ -216,7 +218,7 @@ void emit(int index, vec4 position, vec3 normal, vec4 patchCoord)
     outpt.v.Nv = inpt[index].v.Nv;
 #endif
 
-    gl_Position = ProjectionMatrix * outpt.v.position;
+    gl_Position = gl_in[index].gl_Position;
     EmitVertex();
 }
 

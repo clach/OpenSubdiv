@@ -113,6 +113,8 @@ out block {
 void main()
 {
     outpt.v.position = ModelViewMatrix * position;
+    
+    gl_Position = ProjectionMatrix * outpt.v.position;
 }
 
 #endif

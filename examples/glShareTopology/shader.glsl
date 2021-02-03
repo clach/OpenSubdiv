@@ -127,6 +127,8 @@ void main()
 {
     outpt.v.position = ModelViewMatrix * position;
     OSD_USER_VARYING_PER_VERTEX();
+
+    gl_Position = OsdProjectionMatrix() * outpt.v.position;
 }
 
 #endif
@@ -179,7 +181,7 @@ void emit(int index, vec3 normal)
 #endif
     outpt.v.patchCoord = inpt[index].v.patchCoord;
 
-    gl_Position = ProjectionMatrix * inpt[index].v.position;
+    gl_Position = gl_in[index].gl_Position;
     EmitVertex();
 }
 

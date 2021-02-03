@@ -135,6 +135,8 @@ void main()
     outpt.vSegments = vec2(0);
 #endif
     OSD_USER_VARYING_PER_VERTEX();
+
+    gl_Position = OsdProjectionMatrix() * outpt.v.position;
 }
 
 #endif
@@ -255,7 +257,7 @@ void emit(int index, vec3 normal)
     outpt.color = vec3(uv.s, uv.t, 0);
 #endif
 
-    gl_Position = ProjectionMatrix * inpt[index].v.position;
+    gl_Position = gl_in[index].gl_Position;
     EmitVertex();
 }
 
